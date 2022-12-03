@@ -38,12 +38,12 @@ def syracuse_sequence(n):
         list: сиракузская последовательность
     """
     next_n_func = lambda a: a // 2 if a % 2 == 0 else a * 3 + 1
-    if next_n_func(n)==1:
+    if next_n_func(n) == 1:
         return [n, 1]
     return [n, *syracuse_sequence(next_n_func(n))]
 
 
-def syracuse_max(n):
+def syracuse_max1(n):
     """нахождение наибольшего числа в сиракузской последовательности
 
     Args:
@@ -56,7 +56,28 @@ def syracuse_max(n):
     next_n_func = lambda a: a // 2 if a % 2 == 0 else a * 3 + 1
     if next_n_func(n) == 1:
         return n
-    return max_func(n, syracuse_max(next_n_func(n)))
+    return max_func(n, syracuse_max1(next_n_func(n)))
+
+
+def syracuse_max2(n):
+    """
+    то же самое, что и syracuse_max1(n)
+    """
+    sequense = syracuse_sequence(n)
+    max_el = n
+    for elem in sequense:
+        if max_el < elem:
+            max_el = elem
+    return max_el
+
+
+def syracuse_max3(n):
+    """
+    то же самое, что и syracuse_max1(n)
+    """
+    sequence = syracuse_sequence(n)
+    sequence.sort()
+    return sequence[-1]
 
 
 def main():
@@ -66,8 +87,14 @@ def main():
     mas = syracuse_sequence(N)
     print(mas)
 
-    max_el = syracuse_max(N)
+    max_el = syracuse_max1(N)
     print(max_el)
+
+    # max_el = syracuse_max2(N)
+    # print(max_el)
+
+    # max_el = syracuse_max3(N)
+    # print(max_el)
 
 
 if __name__ == '__main__':
