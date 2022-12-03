@@ -38,7 +38,7 @@ def syracuse_sequence(n):
         list: сиракузская последовательность
     """
     next_n_func = lambda a: a // 2 if a % 2 == 0 else a * 3 + 1
-    if next_n_func(n)==1:
+    if next_n_func(n) == 1:
         return [n, 1]
     return [n, *syracuse_sequence(next_n_func(n))]
 
