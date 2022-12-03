@@ -59,6 +59,27 @@ def syracuse_max(n):
     return max_func(n, syracuse_max(next_n_func(n)))
 
 
+def syracuse_max2(n):
+    """
+    то же самое, что и syracuse_max(n)
+    """
+    sequense = syracuse_sequence(n)
+    max_el = n
+    for elem in sequense:
+        if max_el < elem:
+            max_el = elem
+    return max_el
+
+
+def syracuse_max3(n):
+    """
+    то же самое, что и syracuse_max(n)
+    """
+    sequence = syracuse_sequence(n)
+    sequence.sort()
+    return sequence[-1]
+
+
 def main():
     """main"""
     N = input_control("N", 1)
@@ -66,8 +87,14 @@ def main():
     mas = syracuse_sequence(N)
     print(mas)
 
-    max_el = syracuse_max(N)
+    max_el = syracuse_max(N)  # 130с
     print(max_el)
+
+    # max_el = syracuse_max2(N)  # 175с
+    # print(max_el)
+
+    # max_el = syracuse_max3(N)  # 183с
+    # print(max_el)
 
 
 if __name__ == '__main__':
